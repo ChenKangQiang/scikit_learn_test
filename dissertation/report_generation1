@@ -1,0 +1,34 @@
+import csv
+import numpy as np
+
+csvFile = open('behaviour1.csv', 'w')
+writer = csv.writer(csvFile)
+writer.writerow(['PDR', 'PDFR', 'PMOR', 'PMR', 'Rs', 'Result'])
+
+for i in range(1, 20000):
+
+    pdr = np.random.uniform(0, 0.5)
+    pdfr = np.random.uniform(0, 0.5)
+    pmor = np.random.uniform(0, 0.5)
+    pmr = np.random.uniform(0, 0.5)
+    rs = np.random.uniform(0.2, 1)
+
+    result = -1
+
+    if pdr > 0.3 and pdfr > 0.22:
+        result = 1
+
+    if pmor > 0.2:
+        result = 1
+
+    if pmr > 0.3:
+        result = 1
+
+    if rs <= 0.3:
+        result = 1
+
+    data = (pdr, pdfr, pmor, pmr, rs, result)
+
+    writer.writerow(data)
+
+csvFile.close()
